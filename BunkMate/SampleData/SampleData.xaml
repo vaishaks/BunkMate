@@ -1,0 +1,15 @@
+﻿<vm:SubjectModel
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="clr-namespace:BunkMate.ViewModels">
+
+        <vm:SubjectModel.Subjects>
+            <vm:Subject Name="Subject1" ShortCode="SUB1" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+            <vm:Subject Name="Subject2" ShortCode="SUB2" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+            <vm:Subject Name="Subject3" ShortCode="SUB3" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+            <vm:Subject Name="Subject4" ShortCode="SUB4" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+            <vm:Subject Name="Subject5" ShortCode="SUB5" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+            <vm:Subject Name="Subject6" ShortCode="SUB6" MaxBunks="14" BunkCounterDigit1="0" BunkCounterDigit2="0" />
+    </vm:SubjectModel.Subjects>
+
+</vm:SubjectModel>
