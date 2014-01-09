@@ -8,6 +8,10 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using BunkMate.Resources;
+using BunkMate.ViewModels;
+using Coding4Fun.Toolkit.Controls;
+using Newtonsoft.Json;
+using System.IO.IsolatedStorage;
 
 namespace BunkMate
 {
@@ -32,11 +36,33 @@ namespace BunkMate
             ShellTile appTile = ShellTile.ActiveTiles.First();
             if (appTile != null)
             {
+                // TODO: Make the strings of equal length
+                
+                string backContent = "";
+                for (int i = 0; i < App.ViewModel.Subjects.Count && i < 3; i++)
+                {
+                    backContent += 
+                        App.ViewModel.Subjects[i].ShortCode + 
+                        " - " + 
+                        Convert.ToString(App.ViewModel.Subjects[i].IntBunkCounter) + "\n";
+                }
+                string wideBackContent = "";
+                for (int i = 0; i < App.ViewModel.Subjects.Count - 1 && i < 6; i+=2)
+                {
+                    wideBackContent +=
+                        App.ViewModel.Subjects[i].ShortCode +
+                        " - " +
+                        Convert.ToString(App.ViewModel.Subjects[i].IntBunkCounter) +
+                        "  " +
+                        App.ViewModel.Subjects[i+1].ShortCode +
+                        " - " +
+                        Convert.ToString(App.ViewModel.Subjects[i+1].IntBunkCounter) + "\n";
+                }
                 FlipTileData tileData = new FlipTileData()
                 {
                     BackTitle = "Bunks",
-                    BackContent = "LA - 3\nSTLD - 11\nDS - 5",
-                    WideBackContent = "LA - 3 STLD - 11\nDS - 5 DAA - 7\nMAT - 12 PHY - 6"
+                    BackContent = backContent,
+                    WideBackContent = wideBackContent
                 };
                 appTile.Update(tileData);
             }
@@ -56,12 +82,62 @@ namespace BunkMate
             // Set the page's ApplicationBar to a new instance of ApplicationBar.
             ApplicationBar = new ApplicationBar();
 
-            ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/appbar.add.png", UriKind.Relative));
-            appBarButton.Text = "Add Subject";
-            ApplicationBar.Buttons.Add(appBarButton);
+            ApplicationBarIconButton appBarAddButton = 
+                new ApplicationBarIconButton(new Uri("/Assets/appbar.add.png", UriKind.Relative));
+            appBarAddButton.Text = "Add Subject";
+            ApplicationBar.Buttons.Add(appBarAddButton);
+            appBarAddButton.Click += appBarAddButton_Click;
 
-            ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem("About");
-            ApplicationBar.MenuItems.Add(appBarMenuItem);
+            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem("About");
+            ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
+            appBarAboutMenuItem.Click += appBarAboutMenuItem_Click;
+        }
+
+        void appBarAboutMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutPrompt aboutMe = new AboutPrompt();
+            aboutMe.Show("vaishaks", "@vaishaks", "vaishaks@outlook.com", "vaishaks.tumblr.com");
+        }
+
+        void appBarAddButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AddNewSubject.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void IncrementButton_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            Grid grid = sender as Grid;
+            Subject subject = grid.DataContext as Subject;
+            if (subject == null)
+                return;
+            if (subject.MaxBunks > subject.IntBunkCounter)
+                subject.IncrementBunkCounter();
+            else
+            {
+                // TODO: Display some kind of message saying that no more bunks are possible
+            }
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            Subject subject = menuItem.DataContext as Subject;
+            if (subject == null)
+                return;
+            // Remove subject from the ViewModel
+            App.ViewModel.Subjects.Remove(subject);
+            // Update the IsolatedStorage
+            var data = JsonConvert.SerializeObject(App.ViewModel.Subjects);
+            IsolatedStorageSettings.ApplicationSettings[SubjectModel.SubjectsKey] = data;
+            IsolatedStorageSettings.ApplicationSettings.Save();
+            NavigationService.Navigate(new Uri("/MainPage.xaml?Refresh=true", UriKind.Relative));
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            Subject subject = menuItem.DataContext as Subject;
+            NavigationService.Navigate(new Uri("/EditSubject.xaml?SubjectName=" + subject.Name, UriKind.RelativeOrAbsolute));        
         }
     }
 }
