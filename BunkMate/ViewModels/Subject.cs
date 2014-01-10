@@ -111,9 +111,7 @@ namespace BunkMate.ViewModels
             }
 
             // Save the incremented data back into IsolatedStorage
-            var data = JsonConvert.SerializeObject(App.ViewModel.Subjects);
-            IsolatedStorageSettings.ApplicationSettings[SubjectModel.SubjectsKey] = data;
-            IsolatedStorageSettings.ApplicationSettings.Save();
+            App.ViewModel.SaveModel();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

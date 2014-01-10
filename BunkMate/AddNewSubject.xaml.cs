@@ -66,9 +66,7 @@ namespace BunkMate
 
             // Add the subject data to local storage
             App.ViewModel.Subjects.Add(subject);
-            var data = JsonConvert.SerializeObject(App.ViewModel.Subjects);
-            IsolatedStorageSettings.ApplicationSettings[SubjectModel.SubjectsKey] = data;
-            IsolatedStorageSettings.ApplicationSettings.Save();
+            App.ViewModel.SaveModel();
 
             if (this.NavigationService.CanGoBack)
             {

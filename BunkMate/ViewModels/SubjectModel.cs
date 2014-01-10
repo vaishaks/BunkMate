@@ -45,6 +45,13 @@ namespace BunkMate.ViewModels
             return data;
         }
 
+        public void SaveModel()
+        {
+            var data = JsonConvert.SerializeObject(App.ViewModel.Subjects);
+            IsolatedStorageSettings.ApplicationSettings[SubjectModel.SubjectsKey] = data;
+            IsolatedStorageSettings.ApplicationSettings.Save();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

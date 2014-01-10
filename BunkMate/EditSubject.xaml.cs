@@ -109,9 +109,7 @@ namespace BunkMate
             App.ViewModel.Subjects.Add(newSubject);
             
             // Update the IsolatedStorage
-            var data = JsonConvert.SerializeObject(App.ViewModel.Subjects);
-            IsolatedStorageSettings.ApplicationSettings[SubjectModel.SubjectsKey] = data;
-            IsolatedStorageSettings.ApplicationSettings.Save();
+            App.ViewModel.SaveModel();
 
             if (this.NavigationService.CanGoBack)
             {
