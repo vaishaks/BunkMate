@@ -41,21 +41,36 @@ namespace BunkMate
                 string backContent = "";
                 for (int i = 0; i < App.ViewModel.Subjects.Count && i < 3; i++)
                 {
+                    string spaces = "";
+                    for (int j = 0; j < 5 - App.ViewModel.Subjects[i].ShortCode.Length; j++)
+                        spaces += " ";
                     backContent += 
                         App.ViewModel.Subjects[i].ShortCode + 
-                        " - " + 
+                        spaces +
+                        spaces +
                         Convert.ToString(App.ViewModel.Subjects[i].IntBunkCounter) + "\n";
                 }
                 string wideBackContent = "";
                 for (int i = 0; i < App.ViewModel.Subjects.Count - 1 && i < 6; i+=2)
                 {
+                    string spaces1 = "";
+                    for (int j = 0; j < 5 - App.ViewModel.Subjects[i].ShortCode.Length; j++)
+                        spaces1 += " ";
+                    string spaces2 = "";
+                    for (int j = 0; j < 5 - App.ViewModel.Subjects[i+1].ShortCode.Length; j++)
+                        spaces2 += " ";
+                    string spaces3 = "  ";
+                    if (App.ViewModel.Subjects[i].IntBunkCounter < 10)
+                        spaces3 += " ";
                     wideBackContent +=
                         App.ViewModel.Subjects[i].ShortCode +
-                        " - " +
+                        spaces1 +
+                        spaces1 +
                         Convert.ToString(App.ViewModel.Subjects[i].IntBunkCounter) +
-                        "  " +
+                        spaces3 +
                         App.ViewModel.Subjects[i+1].ShortCode +
-                        " - " +
+                        spaces2 +
+                        spaces2 +
                         Convert.ToString(App.ViewModel.Subjects[i+1].IntBunkCounter) + "\n";
                 }
                 FlipTileData tileData = new FlipTileData()
