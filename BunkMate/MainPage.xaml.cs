@@ -33,11 +33,10 @@ namespace BunkMate
 
         private void CreateFlipTile()
         {
+            // Create live tile with constant spacing
             ShellTile appTile = ShellTile.ActiveTiles.First();
             if (appTile != null)
             {
-                // TODO: Make the strings of equal length
-                
                 string backContent = "";
                 for (int i = 0; i < App.ViewModel.Subjects.Count && i < 3; i++)
                 {
