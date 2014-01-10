@@ -114,7 +114,7 @@ namespace BunkMate
                 subject.IncrementBunkCounter();
             else
             {
-                // TODO: Display some kind of message saying that no more bunks are possible
+                MessageBox.Show("You're out of bunks!", "Oops!", MessageBoxButton.OK);
             }
         }
 

@@ -50,7 +50,15 @@ namespace BunkMate
 
         void appBarCheckButton_Click(object sender, EventArgs e)
         {
-            // TODO: Check for erroneous input and display appropriate error messages
+            // Check for erroneous input and display appropriate error messages
+            int num;
+            if (!int.TryParse(MaxBunksTextbox.Text, out num))
+            {
+                MessageBox.Show("Maximum bunks must be an integer value between 0-99.",
+                    "Looks like you made a booboo.", MessageBoxButton.OK);
+                return;
+            }
+
             Subject subject = new Subject();
             subject.Name = SubjectNameTextbox.Text;
             subject.ShortCode = SubjectCodeTextbox.Text;

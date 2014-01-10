@@ -62,6 +62,21 @@ namespace BunkMate
 
         private void appBarCheckButton_Click(object sender, EventArgs e)
         {
+            // Check for erroneous input
+            int num;
+            if (!int.TryParse(IntBunkCounterTextBox.Text, out num))
+            {
+                MessageBox.Show("Bunk Counter value must be an integer between 0-99",
+                    "Looks like you made a booboo.", MessageBoxButton.OK);
+                return;
+            }
+            if (!int.TryParse(MaxBunksTextBox.Text, out num))
+            {
+                MessageBox.Show("Bunk Counter value must be an integer between 0-99",
+                    "Looks like you made a booboo.", MessageBoxButton.OK);
+                return;
+            }
+
             // Remove the old subject
             App.ViewModel.Subjects.Remove(DataContext as Subject);
 

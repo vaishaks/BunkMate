@@ -60,12 +60,13 @@
                          />
                 
                 <TextBlock Text="Number of bunks"
-                           Margin="12,0,0,0"
+                           Margin="12,0,0,0"                           
                            />
                 <TextBox Text="{Binding IntBunkCounter}"
                          x:Name="IntBunkCounterTextBox"
                          LostFocus="TextBox_LostFocus"
                          InputScope="Number"
+                         MaxLength="2"
                          />
 
                 <TextBlock Text="Subject Code"
@@ -73,6 +74,7 @@
                            />
                 <TextBox Text="{Binding ShortCode}" 
                          x:Name="ShortCodeTextBox"
+                         MaxLength="4"
                          LostFocus="TextBox_LostFocus"
                          />
 
@@ -83,6 +85,7 @@
                          x:Name="MaxBunksTextBox"
                          LostFocus="TextBox_LostFocus"
                          InputScope="Number"
+                         MaxLength="2"
                          />
             </StackPanel>
         </Grid>

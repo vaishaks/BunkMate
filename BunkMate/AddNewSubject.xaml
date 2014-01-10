@@ -63,6 +63,7 @@
                            />
                 <toolkit:PhoneTextBox Hint="Maximum of 4 letters"
                                       x:Name="SubjectCodeTextbox"
+                                      MaxLength="4"
                                       LostFocus="Textbox_LostFocus"
                                       />
                 <TextBlock Text="Maximum Bunks"
@@ -71,7 +72,8 @@
                 <toolkit:PhoneTextBox Hint="Enter maximum bunks"
                                       x:Name="MaxBunksTextbox"
                                       LostFocus="Textbox_LostFocus"
-                                      InputScope="Number"
+                                      MaxLength="2"
+                                      InputScope="Digits"
                                       />
             </StackPanel>        
         </Grid>
