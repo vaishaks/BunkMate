@@ -42,66 +42,76 @@
         <phone:Pivot Title="BUNKMATE">
             <!--Pivot item one-->
             <phone:PivotItem Header="subjects">
-                <!--Double line list with text wrapping-->
-                <phone:LongListSelector Margin="0,0,-12,0" ItemsSource="{Binding Subjects}">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,24"
-                                  >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <toolkit:ContextMenuService.ContextMenu>
-                                    <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="edit" 
-                                                          Click="Edit_Click"
-                                                          />
-                                        <toolkit:MenuItem Header="delete"
-                                                          Click="Delete_Click"
-                                                          />
-                                    </toolkit:ContextMenu>
-                                </toolkit:ContextMenuService.ContextMenu>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name}" 
-                                               TextWrapping="Wrap" 
-                                               Style="{StaticResource PhoneTextExtraLargeStyle}"
-                                           />
-                                    <TextBlock Text="{Binding PercentageBunked, Mode=OneWay}" 
-                                               Margin="18,0,0,0"
-                                               />
-                                </StackPanel>
-
-                                <TextBlock Text="{Binding BunkCounter, Mode=OneWay}" 
-                                           TextWrapping="Wrap" 
-                                           FontFamily="/Assets/RobotoSlab-Thin.ttf#Roboto Slab"
-                                           Foreground="{Binding BunkCounterColor, Mode=OneWay}"
-                                           FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           Grid.Column="1"
-                                           Margin="0,0,18,0"
-                                           />
-                                <Grid Height="100"                                           
-                                      Width="100"
-                                      HorizontalAlignment="Right"
-                                      x:Name="IncrementButton"
-                                      Background="{StaticResource PhoneAccentBrush}" 
-                                      Tap="IncrementButton_Tap"   
-                                      Grid.Column="2"
+                <Grid>
+                    <phone:LongListSelector Margin="0,0,-12,0" 
+                                            ItemsSource="{Binding Subjects}"
+                                            >
+                        <phone:LongListSelector.ItemTemplate>
+                            
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,24"
                                       >
-                                    <Image Source="/Assets/increment.png"
-                                           Height="100"
-                                           Width="100"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                       />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="edit" 
+                                                              Click="Edit_Click"
+                                                              />
+                                            <toolkit:MenuItem Header="delete"
+                                                              Click="Delete_Click"
+                                                              />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}" 
+                                                   TextWrapping="Wrap" 
+                                                   Style="{StaticResource PhoneTextExtraLargeStyle}"
+                                                   />
+                                        <TextBlock Text="{Binding PercentageBunked, Mode=OneWay}" 
+                                                   Margin="18,0,0,0"
+                                                   />
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding BunkCounter, Mode=OneWay}" 
+                                               TextWrapping="Wrap" 
+                                               FontFamily="/Assets/RobotoSlab-Thin.ttf#Roboto Slab"
+                                               Foreground="{Binding BunkCounterColor, Mode=OneWay}"
+                                               FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Grid.Column="1"
+                                               Margin="0,0,18,0"
+                                               />
+                                    <Grid Height="100"          
+                                          Width="100"
+                                          HorizontalAlignment="Right"
+                                          x:Name="IncrementButton"
+                                          Background="{StaticResource PhoneAccentBrush}" 
+                                          Tap="IncrementButton_Tap"   
+                                          Grid.Column="2"
+                                          >
+                                        <Image Source="/Assets/increment.png"
+                                               Height="100"
+                                               Width="100"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               />
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                    <TextBlock x:Name="LonelyTextBox"
+                               TextWrapping="Wrap" 
+                               Text="It's lonely in here. :(" 
+                               Style="{StaticResource PhoneTextTitle2Style}"
+                               Visibility="Collapsed"
+                               />
+                </Grid>
             </phone:PivotItem>
 
             <!--

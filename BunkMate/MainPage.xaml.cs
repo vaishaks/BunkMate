@@ -24,6 +24,10 @@ namespace BunkMate
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
+            if (App.ViewModel.Subjects.Count == 0)
+                LonelyTextBox.Visibility = Visibility.Visible;
+            else
+                LonelyTextBox.Visibility = Visibility.Collapsed;
 
             // Sample code to localize the ApplicationBar
             BuildApplicationBar();
@@ -89,6 +93,10 @@ namespace BunkMate
             {
                 App.ViewModel.LoadData();
             }
+            if (App.ViewModel.Subjects.Count == 0)
+                LonelyTextBox.Visibility = Visibility.Visible;
+            else
+                LonelyTextBox.Visibility = Visibility.Collapsed;
         }
 
         private void BuildApplicationBar()
