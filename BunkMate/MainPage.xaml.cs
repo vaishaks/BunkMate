@@ -29,8 +29,7 @@ namespace BunkMate
             else
                 LonelyTextBox.Visibility = Visibility.Collapsed;
 
-            // Sample code to localize the ApplicationBar
-            BuildApplicationBar();
+            ApplicationBar = (ApplicationBar)Resources["AppBar1"];
 
             CreateFlipTile();
         }
@@ -99,22 +98,6 @@ namespace BunkMate
                 LonelyTextBox.Visibility = Visibility.Collapsed;
         }
 
-        private void BuildApplicationBar()
-        {
-            // Set the page's ApplicationBar to a new instance of ApplicationBar.
-            ApplicationBar = new ApplicationBar();
-
-            ApplicationBarIconButton appBarAddButton = 
-                new ApplicationBarIconButton(new Uri("/Assets/appbar.add.png", UriKind.Relative));
-            appBarAddButton.Text = "Add Subject";
-            ApplicationBar.Buttons.Add(appBarAddButton);
-            appBarAddButton.Click += appBarAddButton_Click;
-
-            ApplicationBarMenuItem appBarAboutMenuItem = new ApplicationBarMenuItem("About");
-            ApplicationBar.MenuItems.Add(appBarAboutMenuItem);
-            appBarAboutMenuItem.Click += appBarAboutMenuItem_Click;
-        }
-
         void appBarAboutMenuItem_Click(object sender, EventArgs e)
         {
             AboutPrompt aboutMe = new AboutPrompt();
@@ -158,6 +141,25 @@ namespace BunkMate
             MenuItem menuItem = sender as MenuItem;
             Subject subject = menuItem.DataContext as Subject;
             NavigationService.Navigate(new Uri("/EditSubject.xaml?SubjectName=" + subject.Name, UriKind.RelativeOrAbsolute));        
+        }
+
+        private void appBarAddReminderButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Pivot pivot = sender as Pivot;
+            switch (pivot.SelectedIndex)
+            {
+                case 0:
+                    ApplicationBar = Resources["AppBar1"] as ApplicationBar;
+                    break;
+                case 1:
+                    ApplicationBar = Resources["AppBar2"] as ApplicationBar;
+                    break;
+            }
         }
     }
 }

@@ -35,11 +35,34 @@
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
+    
+    <phone:PhoneApplicationPage.Resources>
+        <shell:ApplicationBar x:Key="AppBar1" IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/appbar.add.png" 
+                                            Text="add subject" 
+                                            Click="appBarAddButton_Click" 
+                                            />
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About"
+                                              Click="appBarAboutMenuItem_Click"
+                                              />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+        
+        <shell:ApplicationBar x:Key="AppBar2" IsVisible="True">
+            <shell:ApplicationBarIconButton IconUri="/Assets/appbar.add.png"
+                                            Text="reminder"                                 
+                                            Click="appBarAddReminderButton_Click"
+                                            />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
-        <phone:Pivot Title="BUNKMATE">
+        <phone:Pivot Title="BUNKMATE" 
+                     SelectionChanged="Pivot_SelectionChanged"
+                     >
             <!--Pivot item one-->
             <phone:PivotItem Header="subjects">
                 <Grid>
@@ -126,5 +149,4 @@
            
         </phone:Pivot>
     </Grid>
-
 </phone:PhoneApplicationPage>
