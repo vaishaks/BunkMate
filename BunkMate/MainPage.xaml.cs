@@ -150,6 +150,7 @@ namespace BunkMate
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // To change the AppBar as the pivot changes
             Pivot pivot = sender as Pivot;
             switch (pivot.SelectedIndex)
             {
